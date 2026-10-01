@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root { font-family: Inter, system-ui, sans-serif; color: #eee9df; background: #171619; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+main { display: grid; grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr); min-height: 100vh; }
+.chat, aside { padding: 32px; }
+.chat { display: flex; flex-direction: column; max-width: 900px; width: 100%; margin: auto; min-height: 100vh; }
+aside { background: #242126; border-left: 1px solid #403942; }
+h1, h2 { font-family: Georgia, serif; font-weight: 500; }
+h1 { font-size: clamp(2rem, 6vw, 4rem); margin: 0 0 8px; }
+h2 { font-size: 2rem; margin: 8px 0; }
+h3 { color: #b7a5bb; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; margin: 32px 0 8px; }
+.eyebrow { color: #d7a95b; font: 600 .72rem/1.2 ui-monospace, monospace; letter-spacing: .16em; }
+header p:not(.eyebrow) { color: #aaa2aa; }
+.log { flex: 1; padding: 48px 0 24px; }
+article { display: flex; gap: 14px; padding: 12px 0; line-height: 1.6; }
+article b { color: #d7a95b; min-width: 28px; }
+article.assistant span { font-family: Georgia, serif; font-size: 1.15rem; }
+form { display: flex; gap: 8px; border-top: 1px solid #403942; padding-top: 16px; }
+input { flex: 1; min-width: 0; background: #242126; color: inherit; border: 1px solid #514b54; padding: 13px 14px; border-radius: 4px; }
+button { background: #d7a95b; color: #171619; border: 0; padding: 0 18px; border-radius: 4px; font-weight: 700; }
+.turn { margin-top: 48px; color: #aaa2aa; font-family: ui-monospace, monospace; }
+@media (max-width: 800px) { main { grid-template-columns: 1fr; } aside { border-left: 0; border-top: 1px solid #403942; order: -1; padding: 24px 32px; } .chat { min-height: 70vh; } }

@@ -20,6 +20,6 @@
     "src/server/**/*",
     "src/engine/**/*",
     "src/shared/**/*",
-    "content/**/*"
+    "content/house.json"
   ]
 }

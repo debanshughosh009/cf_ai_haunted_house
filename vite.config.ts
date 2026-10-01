@@ -8,7 +8,13 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     agents(),
     react(),
-    cloudflare({ configPath: mode === "development" ? "./wrangler.local.jsonc" : "./wrangler.jsonc", remoteBindings: false }),
+    cloudflare({
+      configPath:
+        mode === "development" && process.env.MOCK_LLM !== "0"
+          ? "./wrangler.local.jsonc"
+          : "./wrangler.jsonc",
+      remoteBindings: false,
+    }),
     tailwindcss(),
   ],
   build: { minify: false },

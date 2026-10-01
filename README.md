@@ -10,7 +10,9 @@ copy .dev.vars.example .dev.vars
 npm run dev
 ```
 
-Open http://localhost:5173. `MOCK_LLM=1` keeps local development and tests offline. Use `npx wrangler login` and `npm run dev:ai` for Workers AI.
+Open http://localhost:5173. `MOCK_LLM=1` keeps local development and tests offline. Use `npx wrangler login` and `npm run dev:ai` for remote Workers AI.
+
+Local development uses `wrangler.local.jsonc`, which omits the Workers AI binding because Wrangler cannot emulate that binding. Production builds use `wrangler.jsonc`.
 
 ## What is here
 
@@ -27,6 +29,11 @@ The model cannot mutate the world. Player text becomes a parsed action, then `va
 npm run check
 npm test
 npm run build
+npm run test:e2e
 ```
 
 The local app has no authentication and gives each browser player an isolated instance ID. The real model path requires a Cloudflare account with Workers AI access.
+
+## Deploy
+
+Run `npx wrangler login`, set the production AI binding in `wrangler.jsonc`, then run `npm run deploy`. For GitHub Actions, add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets and set the `DEPLOY_URL` repository variable for the smoke test.

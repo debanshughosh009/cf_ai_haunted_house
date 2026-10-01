@@ -6,5 +6,5 @@ test("plays a deterministic command through the browser", async ({ page }) => {
   await expect(page.getByText("The Foyer")).toBeVisible({ timeout: 15000 });
   await page.getByLabel("Command").fill("go east");
   await page.getByRole("button", { name: "Send" }).click();
-  await expect(page.getByText("The Kitchen")).toBeVisible({ timeout: 15000 });
+  await expect(page.getByRole("heading", { name: "The Kitchen" })).toBeVisible({ timeout: 15000 });
 });

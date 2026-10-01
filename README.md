@@ -2,6 +2,8 @@
 
 An AI-narrated text adventure on Cloudflare Workers. The engine owns world state and rules; the model only narrates facts.
 
+## VISIT: https://cf-ai-haunted-house.dice-haunted-house.workers.dev/
+
 ## Run
 
 ```sh

@@ -5,6 +5,7 @@ An AI-narrated text adventure on Cloudflare Workers. The engine owns world state
 ## Run
 
 ```sh
+cd C:/Acads/cloudflare/cf_ai_haunted_house
 npm install
 copy .dev.vars.example .dev.vars
 npm run dev
@@ -12,7 +13,7 @@ npm run dev
 
 Open http://localhost:5173. `MOCK_LLM=1` keeps local development and tests offline. Use `npx wrangler login` and `npm run dev:ai` for remote Workers AI.
 
-Local development uses `wrangler.local.jsonc`, which omits the Workers AI binding because Wrangler cannot emulate that binding. Production builds use `wrangler.jsonc`.
+Local mock development uses `wrangler.local.jsonc`, which omits the Workers AI binding because Wrangler cannot emulate that binding. `npm run dev:ai` uses the remote Workers AI binding in `wrangler.jsonc`.
 
 ## What is here
 
@@ -36,4 +37,21 @@ The local app has no authentication and gives each browser player an isolated in
 
 ## Deploy
 
-Run `npx wrangler login`, set the production AI binding in `wrangler.jsonc`, then run `npm run deploy`. For GitHub Actions, add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets and set the `DEPLOY_URL` repository variable for the smoke test.
+For a manual deployment:
+
+```sh
+cd C:/Acads/cloudflare/cf_ai_haunted_house
+npx wrangler login
+npm run deploy
+```
+
+For automatic deployment, add these GitHub repository secrets under **Settings -> Secrets and variables -> Actions**:
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+
+Add this repository variable under the **Variables** tab so the post-deploy smoke test runs:
+
+- `DEPLOY_URL`: your deployed URL, for example `https://cf-ai-haunted-house.dice-haunted-house.workers.dev`
+
+Push to `master` or `main` to run CI and deployment. The API token is only required by GitHub Actions; local deployments use `npx wrangler login`.

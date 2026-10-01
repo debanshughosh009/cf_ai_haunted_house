@@ -1,0 +1,369 @@
+{
+  "version": 1,
+  "title": "The Haunting of Blackwood Manor",
+  "startRoom": "foyer",
+  "rooms": {
+    "foyer": {
+      "name": "The Foyer",
+      "description": "Grand but decaying entryway. Cobwebs drape the chandelier, and cold drafts whisper across the marble floor.",
+      "exits": {
+        "north": { "to": "library", "blockedText": "The way is blocked." },
+        "east": { "to": "kitchen", "blockedText": "The way is blocked." },
+        "up": { "to": "nursery", "blockedText": "The way is blocked." }
+      },
+      "fixtures": {},
+      "items": []
+    },
+    "library": {
+      "name": "The Library",
+      "description": "Floor-to-ceiling mahogany shelves lined with rotting leather tomes. The air smells of old paper and rain.",
+      "exits": {
+        "south": { "to": "foyer", "blockedText": "The way is blocked." },
+        "west": { "to": "conservatory", "blockedText": "The way is blocked." }
+      },
+      "fixtures": {
+        "bookshelf": {
+          "name": "bookshelf",
+          "aliases": ["bookshelf", "shelf", "bookcase", "shelves"],
+          "description": "A tall carved bookcase. One section appears to swing outward.",
+          "container": {
+            "openable": true,
+            "startsOpen": false,
+            "contents": ["journal_page"]
+          }
+        }
+      },
+      "items": ["matches"]
+    },
+    "kitchen": {
+      "name": "The Kitchen",
+      "description": "A cavernous scullery with cold iron stoves and rusted butcher hooks. A flight of stone steps leads downward.",
+      "exits": {
+        "west": { "to": "foyer", "blockedText": "The way is blocked." },
+        "down": {
+          "to": "cellar",
+          "requiresFlag": "candle_lit",
+          "blockedText": "The cellar stairs vanish into a black you cannot walk into."
+        }
+      },
+      "fixtures": {},
+      "items": ["candle", "salt"]
+    },
+    "cellar": {
+      "name": "The Cellar",
+      "description": "Damp subterranean vault. Water drips steadily in the darkness. To the north stands a heavy reinforced iron gate.",
+      "dark": true,
+      "exits": {
+        "up": { "to": "kitchen", "blockedText": "The way is blocked." },
+        "north": {
+          "to": "crypt",
+          "lockedBy": "iron_key",
+          "blockedText": "The cellar gate answers only to iron."
+        }
+      },
+      "fixtures": {},
+      "items": []
+    },
+    "nursery": {
+      "name": "The Nursery",
+      "description": "A frozen nursery with peeling wallpaper showing withered flowers. A tiny rocking horse sits motionless.",
+      "exits": {
+        "down": { "to": "foyer", "blockedText": "The way is blocked." },
+        "up": { "to": "attic", "blockedText": "The way is blocked." }
+      },
+      "fixtures": {},
+      "items": ["music_box"]
+    },
+    "attic": {
+      "name": "The Attic",
+      "description": "Beneath steeply pitched rafters, thick layers of dust blanket forgotten trunks and broken furniture.",
+      "exits": {
+        "down": { "to": "nursery", "blockedText": "The way is blocked." }
+      },
+      "fixtures": {
+        "trunk": {
+          "name": "trunk",
+          "aliases": ["trunk", "chest", "wooden trunk", "iron trunk"],
+          "description": "A heavy iron-banded trunk covered in dust.",
+          "container": {
+            "openable": true,
+            "startsOpen": false,
+            "contents": ["silver_locket"]
+          }
+        }
+      },
+      "items": []
+    },
+    "conservatory": {
+      "name": "The Conservatory",
+      "description": "Shattered glass panes look out upon moonlit overgrown grounds. Dead vines choke decorative iron tables.",
+      "exits": {
+        "east": { "to": "library", "blockedText": "The way is blocked." }
+      },
+      "fixtures": {
+        "flowerpot": {
+          "name": "flowerpot",
+          "aliases": ["flowerpot", "pot", "urn", "planter"],
+          "description": "A cracked ceramic planter filled with dried earth.",
+          "container": {
+            "openable": false,
+            "startsOpen": true,
+            "contents": ["winding_key"]
+          }
+        }
+      },
+      "items": []
+    },
+    "crypt": {
+      "name": "The Crypt",
+      "description": "Ancient vaulted stone sanctuary. The air is quiet and bitterly cold. A massive stone sarcophagus rests in the center.",
+      "ghostForbidden": true,
+      "exits": {
+        "south": { "to": "cellar", "blockedText": "The way is blocked." }
+      },
+      "fixtures": {
+        "coffin": {
+          "name": "stone coffin",
+          "aliases": ["coffin", "stone coffin", "sarcophagus", "tomb"],
+          "description": "A weathered stone coffin where Eleanor's remains lie at rest."
+        }
+      },
+      "items": []
+    }
+  },
+  "items": {
+    "candle": {
+      "name": "candle",
+      "aliases": ["candle", "tallow candle", "wax candle"],
+      "description": "A thick tallow candle, unlit.",
+      "takeable": true,
+      "ghostMovable": false,
+      "ghostStealable": false,
+      "lightSource": {
+        "turnsWhenLit": 30
+      }
+    },
+    "matches": {
+      "name": "matches",
+      "aliases": ["matches", "matchbox", "box of matches", "match"],
+      "description": "A box of sulfur matches with several strikes remaining.",
+      "takeable": true,
+      "ghostMovable": true,
+      "ghostStealable": false
+    },
+    "salt": {
+      "name": "salt",
+      "aliases": ["salt", "pinch of salt", "coarse salt"],
+      "description": "A pouch of coarse ritual salt.",
+      "takeable": true,
+      "ghostMovable": false,
+      "ghostStealable": false
+    },
+    "journal_page": {
+      "name": "journal page",
+      "aliases": ["journal page", "page", "journal", "diary page", "torn page"],
+      "description": "A torn page from the master's diary proving Hale's innocence in the tragic events.",
+      "takeable": true,
+      "ghostMovable": true,
+      "ghostStealable": false
+    },
+    "iron_key": {
+      "name": "iron key",
+      "aliases": ["iron key", "key", "heavy key", "cellar key"],
+      "description": "A heavy, cold iron key engraved with an hourglass.",
+      "takeable": true,
+      "ghostMovable": false,
+      "ghostStealable": true
+    },
+    "music_box": {
+      "name": "music box",
+      "aliases": ["music box", "box", "wooden box"],
+      "description": "An intricately carved wooden music box. It requires a winding key to play.",
+      "takeable": true,
+      "ghostMovable": true,
+      "ghostStealable": false
+    },
+    "winding_key": {
+      "name": "winding key",
+      "aliases": ["winding key", "small key", "clockwork key", "key"],
+      "description": "A small brass key meant for clockwork mechanisms.",
+      "takeable": true,
+      "ghostMovable": true,
+      "ghostStealable": false
+    },
+    "silver_locket": {
+      "name": "silver locket",
+      "aliases": ["silver locket", "locket", "silver necklace", "pendant"],
+      "description": "A tarnished silver locket containing a tiny portrait of young Eleanor.",
+      "takeable": true,
+      "ghostMovable": true,
+      "ghostStealable": true
+    }
+  },
+  "npcs": {
+    "eleanor": {
+      "name": "Eleanor",
+      "aliases": ["eleanor", "ghost", "spirit", "lady eleanor", "apparition"],
+      "kind": "ghost",
+      "startRoom": "nursery",
+      "roams": true,
+      "startMood": -40,
+      "personality": "A mournful, restless young spirit trapped by sorrow and stolen memories. She shifts between childish grief and spectral wrath.",
+      "hints": [
+        {
+          "id": "h_el_1",
+          "minMood": -100,
+          "text": "Give it back… give it back…"
+        },
+        {
+          "id": "h_el_2",
+          "minMood": 0,
+          "text": "My locket. My song. My bed of stone."
+        }
+      ],
+      "topics": {
+        "locket": { "moodDelta": 5, "once": true, "hintId": "h_el_2" },
+        "song": { "moodDelta": 5, "once": true }
+      }
+    },
+    "hale": {
+      "name": "Hale",
+      "aliases": ["hale", "butler", "ghostly butler", "manservant"],
+      "kind": "human",
+      "startRoom": "foyer",
+      "roams": false,
+      "startMood": 0,
+      "personality": "An austere, bound butler anchored to the house by wrongful accusations. Formal, weary, and guarded until shown truth.",
+      "hints": [
+        {
+          "id": "h_hale_1",
+          "minMood": -100,
+          "text": "The mistress kept her treasures high, where the dust settles."
+        },
+        {
+          "id": "h_hale_2",
+          "minMood": 20,
+          "text": "The cellar gate answers only to iron."
+        },
+        {
+          "id": "h_hale_3",
+          "minMood": 30,
+          "requiresFlags": ["hale_trusts"],
+          "text": "She hums the nursery tune. Play it where she sleeps."
+        }
+      ],
+      "topics": {
+        "eleanor": { "moodDelta": 5, "once": true, "hintId": "h_hale_1" },
+        "crypt": { "moodDelta": 5, "once": true, "hintId": "h_hale_2" },
+        "key": { "moodDelta": 0, "once": false, "hintId": "h_hale_2" }
+      }
+    }
+  },
+  "interactions": [
+    {
+      "id": "light_candle",
+      "verb": "light",
+      "subject": "candle",
+      "effects": [
+        { "type": "lightItem", "item": "candle" },
+        { "type": "setFlag", "flag": "candle_lit", "value": true }
+      ],
+      "successText": "You strike a match against the box and touch flame to the wick. The candle flares to life, casting flickering light across the shadows."
+    },
+    {
+      "id": "open_bookshelf",
+      "verb": "open",
+      "subject": "bookshelf",
+      "room": "library",
+      "effects": [
+        { "type": "revealContainer", "room": "library", "fixture": "bookshelf" }
+      ],
+      "successText": "You pull at the edge of the shelf. With a dry groan, a hidden compartment pops open, revealing a yellowed journal page."
+    },
+    {
+      "id": "give_journal_to_hale",
+      "verb": "give",
+      "subject": "journal_page",
+      "target": "hale",
+      "room": "foyer",
+      "effects": [
+        { "type": "moodDelta", "npc": "hale", "delta": 40 },
+        { "type": "setFlag", "flag": "hale_trusts", "value": true },
+        { "type": "moveItem", "item": "journal_page", "to": "void" },
+        { "type": "npcGives", "npc": "hale", "item": "iron_key" }
+      ],
+      "successText": "Hale takes the yellowed page with trembling hands. His hollow eyes widen as he reads. 'Then... I was never blamed. Thank you. Take this key; the crypt below must be consecrated.'"
+    },
+    {
+      "id": "open_trunk",
+      "verb": "open",
+      "subject": "trunk",
+      "room": "attic",
+      "effects": [
+        { "type": "revealContainer", "room": "attic", "fixture": "trunk" }
+      ],
+      "successText": "The rusty latch yields with a sharp click. The heavy lid creaks open, revealing a tarnished silver locket nestled within."
+    },
+    {
+      "id": "wind_music_box",
+      "verb": "use",
+      "subject": "winding_key",
+      "target": "music_box",
+      "effects": [
+        { "type": "setFlag", "flag": "music_box_wound", "value": true }
+      ],
+      "successText": "You insert the winding key into the music box and turn it until tight. The clockwork mechanism hums softly with coiled potential."
+    },
+    {
+      "id": "unlock_crypt",
+      "verb": "use",
+      "subject": "iron_key",
+      "room": "cellar",
+      "effects": [
+        { "type": "setFlag", "flag": "crypt_unlocked", "value": true }
+      ],
+      "successText": "The iron key slides into the corroded lock. With a heavy clunk, the crypt gate unlocks."
+    },
+    {
+      "id": "play_music_box_in_crypt",
+      "verb": "use",
+      "subject": "music_box",
+      "room": "crypt",
+      "requiresFlags": ["music_box_wound"],
+      "effects": [
+        { "type": "setFlag", "flag": "music_playing", "value": true },
+        { "type": "moveNpc", "npc": "eleanor", "to": "crypt" },
+        { "type": "moodDelta", "npc": "eleanor", "delta": 20 }
+      ],
+      "successText": "You open the music box. A delicate, eerie lullaby echoes through the stone arches. A cold mist gathers, and Eleanor's pale figure drifts into the chamber, mesmerized by the melody."
+    },
+    {
+      "id": "place_locket_on_coffin",
+      "verb": "place",
+      "subject": "silver_locket",
+      "target": "coffin",
+      "room": "crypt",
+      "requiresFlags": ["music_playing"],
+      "effects": [
+        { "type": "setFlag", "flag": "eleanor_at_rest", "value": true },
+        { "type": "win" }
+      ],
+      "successText": "You gently rest the silver locket upon the stone lid. Eleanor gazes upon the portrait, tears of silver light falling from her cheeks. A peaceful sigh sweeps through the crypt as her spirit dissolves into warmth. The house is at peace."
+    },
+    {
+      "id": "give_locket_to_eleanor",
+      "verb": "give",
+      "subject": "silver_locket",
+      "target": "eleanor",
+      "effects": [
+        { "type": "moodDelta", "npc": "eleanor", "delta": 40 }
+      ],
+      "successText": "Eleanor reaches out a translucent hand toward the locket, touching the cool metal with reverence. 'My locket...' she whispers, unable to hold it yet. She smiles faintly."
+    }
+  ],
+  "ending": {
+    "requiresFlags": ["eleanor_at_rest"],
+    "room": "crypt",
+    "text": "The curse on the manor is broken. Eleanor rests at last in the quiet earth, and the shadows retreat."
+  }
+}

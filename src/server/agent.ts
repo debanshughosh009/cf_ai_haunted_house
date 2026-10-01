@@ -77,12 +77,16 @@ export class HauntedHouseAgent extends AIChatAgent<Env, PublicView> {
     if (!world || world.won) return;
     const now = Date.now();
     const awayMs = now - world.lastSeenAt;
-    const away = this.getConnections().length === 0 && awayMs >= Number(this.env.AWAY_SECONDS || 300) * 1000;
+    const away = Array.from(this.getConnections()).length === 0 && awayMs >= Number(this.env.AWAY_SECONDS || 300) * 1000;
     const tickId = `tick-${now}`;
-    const plan = this.planTick(tickId, away, awayMs);
-    if (plan.events.length === 0) return;
-    const { facts } = this.commitTick(tickId);
-    this.attachTickNarration(tickId, renderEventsParagraph(facts.events.map((event) => ({ type: "action_failed", code: "FACT", reason: event.text })), CONTENT));
+    try {
+      await this.runWorkflow("WORLD_TICK", { tickId, away, awayMs });
+    } catch {
+      const plan = this.planTick(tickId, away, awayMs);
+      if (plan.events.length === 0) return;
+      const { facts } = this.commitTick(tickId);
+      this.attachTickNarration(tickId, facts.events.map((event: { text: string }) => event.text).join(" "));
+    }
   }
 
   planTick(tickId: string, away: boolean, awayMs: number) {

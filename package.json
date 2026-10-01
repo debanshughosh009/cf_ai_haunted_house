@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "dev:ai": "cross-env MOCK_LLM=0 vite dev",
+    "dev": "cross-env XDG_CONFIG_HOME=.wrangler-local vite dev",
+    "dev:ai": "cross-env XDG_CONFIG_HOME=.wrangler-local MOCK_LLM=0 vite dev",
     "build": "vite build",
     "preview": "vite preview",
     "types": "wrangler types",
@@ -20,7 +20,7 @@
     "test:workers": "vitest run -c vitest.workers.config.ts",
     "test:e2e": "playwright test",
     "eval:llm": "tsx scripts/llm-eval.ts",
-    "check": "npm run types && npm run typecheck && npm run check:engine-purity && npm run content:validate && npm run test && npm run build",
+    "check": "npm run types && npm run lint && npm run typecheck && npm run check:engine-purity && npm run content:validate && npm run test && npm run build",
     "deploy": "npm run check && vite build && wrangler deploy",
     "smoke": "tsx scripts/smoke.ts"
   },
@@ -35,6 +35,7 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^8.0.6",
     "@biomejs/biome": "^2.0.0",
     "@cloudflare/vite-plugin": "^1.62.0",
     "@cloudflare/vitest-pool-workers": "^0.22.0",

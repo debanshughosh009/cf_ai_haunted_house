@@ -4,7 +4,7 @@ import type { HauntedHouseAgent } from "./agent";
 export type TickParams = { tickId: string; away: boolean; awayMs: number };
 
 export class WorldTickWorkflow extends AgentWorkflow<HauntedHouseAgent, TickParams> {
-  async run(event: { payload: TickParams }, step: { do<T>(name: string, fn: () => Promise<T> | T): Promise<T> }) {
+  async run(event: any, step: any) {
     const { tickId, away, awayMs } = event.payload;
     const plan = await step.do("plan", () => this.agent.planTick(tickId, away, awayMs));
     if (!plan.events.length) return { tickId, skipped: true };

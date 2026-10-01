@@ -1,18 +1,19 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
-  "organizeImports": { "enabled": true },
+  "$schema": "https://biomejs.dev/schemas/2.5.15/schema.json",
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "suspicious": {
+        "noAssignInExpressions": "off"
+      }
     }
   },
   "formatter": {
-    "enabled": true,
+    "enabled": false,
     "indentStyle": "space",
     "indentWidth": 2
   },
-  "files": {
-    "ignore": ["node_modules", "dist", ".wrangler", "worker-configuration.d.ts"]
-  }
+  "assist": { "enabled": false },
+  "files": { "includes": ["**", "!node_modules/**", "!dist/**", "!.wrangler/**", "!worker-configuration.d.ts"] }
 }
